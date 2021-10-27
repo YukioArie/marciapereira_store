@@ -1,26 +1,22 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%# <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> %>
+  <%#  <h1 class="h3 mb-3 fw-normal">Fazer Login</h1> %>
+  <div class="form-floating mb-2">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", class:"form-control", id:"floatingInput" %>
+    <%= f.label :email, for: "floatingInput" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="form-floating">
+    <%= f.email_field :password, autocomplete: "current-password", type:"password", class:"form-control", id:"floatingPassword" %>
+    <%= f.label :password, for: "floatingPassword" %>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="row">
+    <% if devise_mapping.rememberable? %>
+      <div class="checkbox mb-3">
+        <%= f.check_box :remember_me, type:"checkbox",  value:"remember-me" %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
   </div>
+  <%= f.submit "Entrar", class:"w-100 btn btn-lg btn-primary mb-3", type:"submit" %>
 <% end %>
-
-<%= render "admins/shared/links" %>
+<%= link_to 'Esqueceu a senha?', new_admin_password_path %>
