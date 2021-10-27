@@ -9,7 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 //import yarn libs
 import "bootstrap";
-import "../stylesheets/application"
+import "../stylesheets/application.scss"
 
 Rails.start()
 Turbolinks.start()
