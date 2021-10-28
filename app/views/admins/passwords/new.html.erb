@@ -1,16 +1,12 @@
-<h2>Forgot your password?</h2>
-
+<%= render "admins/shared/error_messages", resource: resource, class:"h4 mb-4 text-start fs-3 display-1" %>
+<h2 class="h4 mb-4 text-start fs-3 display-1">Esqueceu sua senha?</h2>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "admins/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%# <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> %>
+  <%#  <h1 class="h3 mb-3 fw-normal">Fazer Login</h1> %>
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", class:"form-control", id:"floatingInput" %>
+    <%= f.label :email, for: "floatingInput" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+  <%= f.submit "Obter nova senha" , class:"w-100 btn btn-lg btn-primary mb-3", type:"submit" %>
 <% end %>
-
-<%= render "admins/shared/links" %>
+<%= link_to 'Login', new_admin_session_path %>
