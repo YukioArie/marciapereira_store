@@ -1,4 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% flash.each do |key, value| %>
+    <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
   <%# <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> %>
   <%#  <h1 class="h3 mb-3 fw-normal">Fazer Login</h1> %>
   <div class="form-floating mb-2">
