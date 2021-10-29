@@ -31,9 +31,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'admin_devise', 'data-turbolinks-track': 'reload' %>
     <script>
-      $(function () {
-        alert("test");
-      })
+      <% if flash %>
+        <% flash.each do |key, value| %>
+            toastr.error('<%= value %>')
+        <% end %>
+      <% end %>
+      <% if resource.errors.any? %>
+          <% resource.errors.full_messages.each do |message| %>
+            toastr.error('<%= message %>')
+          <% end %>
+      <% end %>
     </script>
   </body>
 </html>

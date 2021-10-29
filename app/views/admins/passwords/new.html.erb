@@ -1,4 +1,4 @@
-<%= render "admins/shared/error_messages", resource: resource, class:"h4 mb-4 text-start fs-3 display-1" %>
+<%# render "admins/shared/error_messages", resource: resource, class:"h4 mb-4 text-start fs-3 display-1" %>
 <h2 class="h4 mb-4 text-start fs-3 display-1">Esqueceu sua senha?</h2>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%# <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> %>
@@ -9,4 +9,6 @@
   </div>
   <%= f.submit "Obter nova senha" , class:"w-100 btn btn-lg btn-primary mb-3", type:"submit" %>
 <% end %>
-<%= link_to 'Login', new_admin_session_path %>
+<div class="text-end">
+  <%= link_to 'Voltar', new_admin_session_path, class:"text-start" %>
+</div>
