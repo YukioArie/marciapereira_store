@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'admin_devise', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'layouts/admin_devise', media: 'all', 'data-turbolinks-track': 'reload' %>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -29,7 +29,7 @@
       <%= yield %>
     </main>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'admin_devise', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'layouts/admin_devise', 'data-turbolinks-track': 'reload' %>
     <script>
       <% if flash %>
         <% flash.each do |key, value| %>
