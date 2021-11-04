@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   namespace :admins_area do
-    get 'products/index'
-  end
-  namespace :admins_area do
-    get 'home/index'
+    get 'home', to: 'home#index'
+    resources :products
   end
   namespace :site do
     get 'home/index'
