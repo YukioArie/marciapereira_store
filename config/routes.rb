@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admins_area do
+    get 'products/index'
+  end
+  namespace :admins_area do
     get 'home/index'
   end
   namespace :site do
