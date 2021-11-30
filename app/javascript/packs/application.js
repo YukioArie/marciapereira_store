@@ -5,18 +5,18 @@
 //images
 require.context('../images', true)
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from "@rails/ujs";
+
+import * as ActiveStorage from "@rails/activestorage";
+import "channels";
 //import yarn libs
-import "jquery"
+import "jquery";
+require("@nathanvda/cocoon")
 import "bootstrap";
-import "../stylesheets/application.scss"
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import "../stylesheets/application.scss";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
