@@ -24,8 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'rails-i18n', '~> 6.0.0'
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 gem 'cocoon'
+gem 'image_processing', '~> 1.2'
 gem 'rails-erd'
 
 # Reduces boot times through caching; required in config/boot.rb
