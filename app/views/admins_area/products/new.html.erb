@@ -1,0 +1,47 @@
+ <%= form_with model: [:admins_area, @product] do |form|%>
+  <div class="card">
+    <h5 class="card-header">Adicionar Roupa</h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-8">
+          <%= form.label :title, class:"colmd-2 col-form-label col-form-label-lg" %>
+          <%= form.text_field :title, class:"form-control", id:"formGroupExampleInput", placeholder:"Ex: Vestido floral farm" %>
+        </div>
+        <div class="col-lg-4">
+          <%= form.label :price, class:"col-sm-2 col-form-label col-form-label-lg" %>
+          <%= form.text_field :price, class:"form-control", id:"formGroupExampleInput", placeholder: "10,00"  %>
+        </div>
+      </div>
+      <div class="mb-3">
+        <%= form.label :description, class:"col-sm-2 col-form-label col-form-label-lg" %>
+        <%= form.text_area :description, class:"form-control", id:"exampleFormControlInput1", size: "70x5", placeholder:"Ex: Vestido floral farm, coleção borboletas, em seda colorida, ótimo acabamento, você vai amar. "  %>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-5">
+    <h5 class="card-header">Adicionar Imagens</h5>
+    <div class="card-body">
+      <div class="mb-3">
+        <% 5.times do %>
+          <%= form.file_field :images, multiple: true, class:"form-control mt-3", id:"formFileMultiple"  %>
+        <% end%>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-5">
+    <h5 class="card-header">Adicionar Tamanhos</h5>
+    <div class="card-body">
+      <div id="sizes">
+        <%= form.fields_for :sizes do |size| %>
+          <%= render partial: "size_fields", locals: { f: size }  %>
+        <% end%>
+        <div class="links text-center">
+          <%=  link_to_add_association 'Adicionar Tamanhos' , form, :sizes, class:"btn", style:"background-color: #763555; color:#fff" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center ">
+    <button type="submit" class="btn mt-4 " style="background-color: #763555; color:#fff">Salvar</button>
+  </div>
+<% end%>
