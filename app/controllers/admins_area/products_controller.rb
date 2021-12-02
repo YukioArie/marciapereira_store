@@ -1,6 +1,6 @@
 class AdminsArea::ProductsController < AdminsAreaController
   def index
-    @products = Product.includes(:images_blobs)
+    @products = Product.includes(:images_blobs, :sizes)
   end
 
   def new
