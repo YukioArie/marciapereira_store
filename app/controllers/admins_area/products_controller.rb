@@ -1,6 +1,8 @@
 class AdminsArea::ProductsController < AdminsAreaController
   def index
     @products = Product.includes(:images_blobs, :sizes)
+    @clientes = Client.all.order(:name)
+    console
   end
 
   def new
@@ -12,8 +14,7 @@ class AdminsArea::ProductsController < AdminsAreaController
   def create
     @product = Product.new(params_product)
     if @product.save!
-      redirect_to admins_area_products_path, notice: "Produto
-      cadastrado com sucesso!"
+      redirect_to admins_area_products_path, notice: 'Produto cadastrado com sucesso!'
     else
       render :new
     end
