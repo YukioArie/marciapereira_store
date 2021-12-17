@@ -31,8 +31,9 @@ body {
   #logo{
     display: none;
   }
-  header.navbar{
-    
+  .main-page-products{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 
 }

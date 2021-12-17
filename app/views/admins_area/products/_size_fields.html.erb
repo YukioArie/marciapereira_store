@@ -6,16 +6,18 @@
         <%= f.text_field :size_type, class:"form-control", placeholder: "Ex: M"  %>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="input-group mb-3">
-        <%= f.label :quantity, "Quantidade", class:"input-group-text" %>
-        <%= f.text_field :quantity, class:"form-control", placeholder: "1"  %>
+    <div class="col-md-7">
+      <div class="row ">
+        <div class="input-group mb-3">
+          <%= f.label :quantity, "Quantidade", class:"input-group-text" %>
+          <%= f.text_field :quantity, class:"form-control", placeholder: "1"  %>
+          <div class="col-md-1 text-end ">
+            <%= link_to_remove_association( f, class:"btn", style:"background-color: #763555; color:#fff") do %>
+              <i class="bi bi-x"></i>
+            <% end%>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-1 text-start ">
-      <%= link_to_remove_association( f, class:"btn", style:"background-color: #763555; color:#fff") do %>
-        <i class="bi bi-x"></i>
-      <% end%>
     </div>
   </div>
 </div>
