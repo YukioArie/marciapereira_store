@@ -69,5 +69,10 @@
     </div>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_pack_tag 'layouts/admins_area' %>
+    <script>
+      <% if notice %>
+        toastr.error('<%= notice %>')
+      <% end %>
+    </script>
   </body>
 </html>
