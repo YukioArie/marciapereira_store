@@ -1,7 +1,7 @@
 class AdminsArea::ProductsController < AdminsAreaController
   def index
     @products = Product.includes(:images_blobs, :sizes)
-    @clientes = Client.all.order(:name)
+    @clients = Client.all.order(:name)
     console
   end
 
