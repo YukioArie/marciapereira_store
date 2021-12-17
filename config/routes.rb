@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :admins_area do
     get 'home', to: 'home#index'
     post 'cart/add_item', to: 'carts#add_item_in_cart'
-    
+    get 'search', to: 'search#products'
     resources :products
   end
   namespace :site do
