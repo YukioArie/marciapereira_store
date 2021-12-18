@@ -15,6 +15,7 @@ require("@nathanvda/cocoon")
 import "bootstrap";
 import "../stylesheets/application.scss";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import "@fortawesome/fontawesome-free/js/all"
 
 
 
