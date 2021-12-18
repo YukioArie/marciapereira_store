@@ -1,6 +1,6 @@
 class AdminsArea::ProductsController < AdminsAreaController
   def index
-    @products = Product.includes(:images_blobs, :sizes)
+    @products = Product.includes(:images_blobs, :sizes).page params[:page]
     @clients = Client.all.order(:name)
     console
   end
