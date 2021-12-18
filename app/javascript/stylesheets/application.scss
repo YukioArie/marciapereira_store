@@ -1,4 +1,36 @@
 @import "bootstrap";
 
-
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #763555;
+    border-color: #763555;
+}
+.page-link {
+    position: relative;
+    display: block;
+    color: #763555;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn:focus{
+    box-shadow: none !important;
+}
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: none;
+  border-color: #763555;
+}
 
