@@ -26,7 +26,8 @@ gem 'rails-i18n', '~> 6.0.0'
 # Use Active Storage variant
 gem 'cocoon'
 gem 'image_processing', '~> 1.2'
-gem 'rails-erd'
+gem 'kaminari'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -42,6 +43,7 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'rails-erd'
   gem 'rack-mini-profiler', '~> 2.0'
 end
 
