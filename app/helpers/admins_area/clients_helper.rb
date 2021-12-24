@@ -1,0 +1,2 @@
+module AdminsArea::ClientsHelper
+end
