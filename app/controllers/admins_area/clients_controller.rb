@@ -1,4 +1,5 @@
 class AdminsArea::ClientsController < AdminsAreaController
+  before_action :set_client, only: %i[destroy edit]
   def index
     @clients = Client.all.page params[:page]
   end
@@ -8,12 +9,21 @@ class AdminsArea::ClientsController < AdminsAreaController
   end
 
   def destroy
-    @client = Client.find(params[:id])
     @cart = Cart.where(client_id: params[:id]).first
     if @cart.destroy! && @client.destroy!
       redirect_to admins_area_clients_path, notice: 'Cliente excluido com sucesso!'
     else
       render :index
+    end
+  end
+
+  def edit; end
+
+  def update
+    if Client.update(params_client)
+      redirect_to admins_area_clients_path, notice: 'Cliente atualizado com sucesso!'
+    else
+      render :edit
     end
   end
 
@@ -28,6 +38,10 @@ class AdminsArea::ClientsController < AdminsAreaController
   end
 
   private
+
+  def set_client
+    @client = Client.find(params[:id])
+  end
 
   def params_client
     params.require(:client).permit(:name, :email, :cellphone_number, :genre)
