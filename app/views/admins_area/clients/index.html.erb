@@ -23,13 +23,13 @@
           <th scope="col"><%= client.cellphone_number%>65636</th>
           <th scope="col"><%= client.email%></th>
           <th scope="col">
-            <%= link_to edit_admins_area_client_path(client), class:"btn ", style:"background-color: #763555; color:#fff; margin-bottom: 2px, ; margin-top: 2px" do%>
+            <%= link_to edit_admins_area_client_path(client), class:"btn ", style:"background-color: #763555; color:#fff; margin-bottom: 2px ; margin-top: 2px" do%>
               <i class="bi bi-pencil-square"></i>
             <% end%>
-            <%= link_to new_admins_area_product_path, class:"btn ", style:"background-color: #763555; color:#fff; margin-bottom: 2px, ; margin-top: 2px" do%>
+            <%= link_to new_admins_area_product_path, class:"btn ", style:"background-color: #763555; color:#fff; margin-bottom: 2px ; margin-top: 2px" do%>
               <i class="fas fa-shopping-cart"></i>
             <% end%>
-            <button type="button" class="btn " style="background-color: #763555; color:#fff; margin-bottom: 2px, ; margin-top: 2px", data-bs-toggle="modal" data-bs-target="#exampleModal<%=client.name.delete('  .') %>"><i class="fas fa-trash"></i></button>
+            <button type="button" class="btn " style="background-color: #763555; color:#fff; margin-bottom: 2px ; margin-top: 2px" data-bs-toggle="modal" data-bs-target="#exampleModal<%=client.name.delete('  .') %>"><i class="fas fa-trash"></i></button>
           </th>
         </tr>
         <div class="modal fade" id="exampleModal<%=client.name.delete('  .') %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
