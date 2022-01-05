@@ -1,6 +1,6 @@
- <%= form_with model: [:admins_area, client] do |form|%>
+ <%= form_with model: [:admins_area, @client] do |form|%>
   <div class="card">
-    <h5 class="card-header">Adicionar Cliente</h5>
+    <h5 class="card-header"><%= action_message %></h5>
     <div class="card-body">
       <div class="row">
         <div class="col-lg-7">
