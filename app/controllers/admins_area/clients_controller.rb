@@ -1,5 +1,5 @@
 class AdminsArea::ClientsController < AdminsAreaController
-  before_action :set_client, only: %i[destroy edit]
+  before_action :set_client, only: %i[destroy edit update]
   def index
     @clients = Client.all.page params[:page]
   end
@@ -20,7 +20,7 @@ class AdminsArea::ClientsController < AdminsAreaController
   def edit; end
 
   def update
-    if Client.update(params_client)
+    if @client.update(params_client)
       redirect_to admins_area_clients_path, notice: 'Cliente atualizado com sucesso!'
     else
       render :edit
