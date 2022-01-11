@@ -1,4 +1,8 @@
 class AdminsArea::CartsController < AdminsAreaController
+  before_action :set_cart_id_params, only: %i[add_quantity_item remove_quantity_item destroy_item]
+  before_action :set_item_id_params, only: %i[add_quantity_item remove_quantity_item destroy_item]
+  before_action :increment_total_price, only: %i[add_quantity_item]
+  before_action :decrement_total_price, only: %i[remove_quantity_item destroy_item]
   def index
     @carts = Cart.includes(:client, :items).where('total_price > 0').order(:id)
   end
@@ -15,10 +19,7 @@ class AdminsArea::CartsController < AdminsAreaController
   end
 
   def destroy_item
-    @item = Item.find(params[:item_id])
-    @cart = Cart.find(params[:cart_id])
-    @cart.total_price -= @item.size.product.price
-    if @item.destroy && @cart.save!
+    if @item.destroy
       redirect_to admins_area_cart_path, notice: 'Item removido!'
     else
       render :index
@@ -26,11 +27,8 @@ class AdminsArea::CartsController < AdminsAreaController
   end
 
   def remove_quantity_item
-    @cart = Cart.find(params[:cart_id])
-    @item = Item.find(params[:item_id])
     @item.quantity -= 1
-    @cart.total_price -= @item.size.product.price
-    if @cart.save! && @item.save!
+    if @item.save!
       redirect_to admins_area_cart_path
     else
       render :index
@@ -38,11 +36,8 @@ class AdminsArea::CartsController < AdminsAreaController
   end
 
   def add_quantity_item
-    @cart = Cart.find(params[:cart_id])
-    @item = Item.find(params[:item_id])
     @item.quantity += 1
-    @cart.total_price += @item.size.product.price
-    if @cart.save! && @item.save!
+    if @item.save!
       redirect_to admins_area_cart_path
     else
       render :index
@@ -50,6 +45,24 @@ class AdminsArea::CartsController < AdminsAreaController
   end
 
   private
+
+  def increment_total_price
+    @cart.total_price += @item.size.product.price
+    @cart.save!
+  end
+
+  def decrement_total_price
+    @cart.total_price -= @item.size.product.price
+    @cart.save!
+  end
+
+  def set_cart_id_params
+    @cart = Cart.find(params[:cart_id])
+  end
+
+  def set_item_id_params
+    @item = Item.find(params[:item_id])
+  end
 
   def set_total_price(client_id, size_id)
     cart = Client.find(client_id).cart
