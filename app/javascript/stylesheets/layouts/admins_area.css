@@ -2,7 +2,9 @@ body {
   font-size: .875rem;
 }
 
-
+#cart-mobile{
+  display: none;
+}
 
 
 /*
@@ -25,6 +27,12 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  #cart-mobile{
+    display: block;
+  }
+  #cart-pc{
+    display: none
+  }
   #sign_out_link{
     display: none;
   }

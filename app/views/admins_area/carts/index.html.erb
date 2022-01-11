@@ -1,0 +1,114 @@
+<% @carts.each do |cart| %>
+  <div class="card mb-4" id="cart-pc">
+    <h5 class="card-header">Carrinho do <%= cart.client.name %></h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <% cart.items.each do |item|%>
+            <div class="card mb-3 border-white" style="max-width: 540px; ">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <%= image_tag item.size.product.images.first, class:"img-fluid rounded-start" %>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted"><%= item.size.product.title %></h6>
+                    <span class="badge rounded-pill mb-2" style="background-color: #763555"><%= item.size.size_type %></span>
+                    <h5 class="card-text"><%= number_to_currency item.size.product.price %></h5>
+                    <div class="d-flex justify-content-start">
+                      <% if item.quantity > 1%>
+                        <%= link_to admins_area_cart_remove_quantity_path(cart.id, item.id), method: :patch, class:"btn ", style:"background-color: #763555; color:#fff; margin-right: 4px" do%>
+                          <i class="fas fa-minus"></i>
+                        <% end%>
+                      <% else%>
+                        <%= link_to admins_area_cart_destroy_item_path(cart.id,item.id), method: :delete, class:"btn ", style:"background-color: #763555; color:#fff; margin-right: 4px" do%>
+                          <i class="fas fa-trash"></i>
+                        <% end%>
+                      <% end%>
+                      <input class="form-control" type="text" placeholder="<%= item.quantity %>" aria-label="Disabled input example" disabled style="width:45px;">
+                      <% if item.quantity < item.size.quantity%>
+                        <%= link_to admins_area_cart_add_quantity_path(cart.id, item.id), method: :patch, class:"btn ", style:"background-color: #763555; color:#fff; margin-left: 4px" do%>
+                          <i class="fas fa-plus"></i>
+                        <% end%>
+                      <% else%>
+                        <button type="button" class="btn " style="background-color: #763555; color:#fff; margin-left: 4px"  disabled><i class="fas fa-plus"></i></button>
+                      <% end%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end%>
+        </div>
+        <div class="col-6">
+          <div class="card text-center" style="width: 30rem;">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h6 class="card-subtitle mb-2 text-muted">teste Items</h6>
+              </div>
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title">Preço Total</h5>
+                <h4 class="card-title"><%= number_to_currency cart.total_price %></h4>
+              </div>
+              <%= link_to 'Pagar', new_admins_area_client_path, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end%>
+<% @carts.each do |cart| %>
+  <div class="card mb-4" id="cart-mobile">
+    <h5 class="card-header">Carrinho do <%= cart.client.name %></h5>
+    <div class="card-body">
+      <% cart.items.each do |item|%>
+        <div class="card mb-3 border-white" style="max-width: 540px; ">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <%= image_tag item.size.product.images.first, class:"img-fluid rounded-start p-3" %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body  pt-2">
+                <h6 class="card-subtitle mb-2 text-muted"><%= item.size.product.title %></h6>
+                <span class="badge rounded-pill mb-2" style="background-color: #763555"><%= item.size.size_type %></span>
+                <h5 class="card-text"><%= number_to_currency item.size.product.price %></h5>
+                <div class="d-flex justify-content-start">
+                  <% if item.quantity > 1%>
+                    <%= link_to admins_area_cart_remove_quantity_path(cart.id, item.id), method: :patch, class:"btn ", style:"background-color: #763555; color:#fff; margin-right: 4px" do%>
+                      <i class="fas fa-minus"></i>
+                    <% end%>
+                  <% else%>
+                    <%= link_to admins_area_cart_destroy_item_path(cart.id,item.id), method: :delete, class:"btn ", style:"background-color: #763555; color:#fff; margin-right: 4px" do%>
+                      <i class="fas fa-trash"></i>
+                    <% end%>
+                  <% end%>
+                  <input class="form-control" type="text" placeholder="<%= item.quantity %>" aria-label="Disabled input example" disabled style="width:45px;">
+                  <% if item.quantity < item.size.quantity%>
+                    <%= link_to admins_area_cart_add_quantity_path(cart.id, item.id), method: :patch, class:"btn ", style:"background-color: #763555; color:#fff; margin-left: 4px" do%>
+                      <i class="fas fa-plus"></i>
+                    <% end%>
+                  <% else%>
+                    <button type="button" class="btn " style="background-color: #763555; color:#fff; margin-left: 4px"  disabled><i class="fas fa-plus"></i></button>
+                  <% end%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end%>
+      <div class="card text-center" >
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h6 class="card-subtitle mb-2 text-muted">teste Items</h6>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title">Preço Total</h5>
+            <h4 class="card-title"><%= number_to_currency cart.total_price %></h4>
+          </div>
+          <%= link_to 'Pagar', new_admins_area_client_path, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end%>
