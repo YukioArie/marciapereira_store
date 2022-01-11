@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   namespace :admins_area do
     get 'home', to: 'home#index'
     post 'cart/add_item', to: 'carts#add_item_in_cart'
+    get 'cart', to: 'carts#index'
+    patch 'cart/add/:cart_id/:item_id', to: 'carts#add_quantity_item', as: 'cart_add_quantity'
+    patch 'cart/remove/:cart_id/:item_id', to: 'carts#remove_quantity_item', as: 'cart_remove_quantity'
+    delete 'cart/delete/:cart_id/:item_id', to: 'carts#destroy_item', as: 'cart_destroy_item'
     get 'search', to: 'search#products'
     resources :clients
     resources :products
