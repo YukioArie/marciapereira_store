@@ -29,15 +29,21 @@
                 </a>
               </li>
               <li class="nav-item">
+                <%= link_to admins_area_products_path, class: "nav-link  pl-4 pb-4 pt-3" do %>
+                  <i class="bi bi-card-checklist"></i>
+                  <span>Produtos</span>
+                <% end%>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link  pl-4 pb-4 pt-3" href="#">
                   <i class="bi bi-bar-chart-line "></i>
                   Vendas
                 </a>
               </li>
               <li class="nav-item">
-                <%= link_to admins_area_products_path, class: "nav-link  pl-4 pb-4 pt-3" do %>
-                  <i class="bi bi-card-checklist"></i>
-                  <span>Produtos</span>
+                <%= link_to  admins_area_cart_path, class: "nav-link  pl-4 pb-4 pt-3" do %>
+                  <i class="fas fa-shopping-cart"></i>
+                  <span>Carrinhos</span>
                 <% end%>
               </li>
               <li class="nav-item">
@@ -45,12 +51,6 @@
                   <i class="bi bi-card-checklist"></i>
                   <span>Clientes</span>
                 <% end%>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link  pl-4 pb-4 pt-3" href="#">
-                  <i class="bi bi-tags"></i>
-                  Cadastrar Produtos/Categorias
-                </a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li class="nav-item">
