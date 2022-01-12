@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 genre = %w[masculino feminino]
 
+Admin.create!(
+  email: 'admin@admin.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
 50.times do |index|
   client = Client.new(
     id: index,
