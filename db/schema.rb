@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_172308) do
     t.float "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "client_id", null: false
+    t.bigint "client_id"
     t.index ["client_id"], name: "index_carts_on_client_id"
   end
 
