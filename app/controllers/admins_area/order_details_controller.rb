@@ -1,7 +1,7 @@
 class AdminsArea::OrderDetailsController < AdminsAreaController
   def index; end
 
-  def new
+  def create
     cart_client = Cart.find(params[:cart_id])
     order_detail = OrderDetail.create!(total_price: 0, client_id: cart_client.client.id)
 

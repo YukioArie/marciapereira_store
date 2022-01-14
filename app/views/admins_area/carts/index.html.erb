@@ -50,7 +50,7 @@
                 <h5 class="card-title">Preço Total</h5>
                 <h4 class="card-title"><%= number_to_currency cart.total_price %></h4>
               </div>
-              <%= link_to 'Pagar', new_admins_area_client_path, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
+              <%= link_to 'Pagar', admins_area_order_details_create_path(cart.id), method: :post, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@
             <h5 class="card-title">Preço Total</h5>
             <h4 class="card-title"><%= number_to_currency cart.total_price %></h4>
           </div>
-          <%= link_to 'Pagar', new_admins_area_client_path, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
+          <%= link_to 'Pagar', admins_area_order_details_create_path(cart.id), method: :post, class:"btn rounded-pill mt-4 p-3", style:"background-color: #763555; color:#fff; width: 100%" %>
         </div>
       </div>
     </div>

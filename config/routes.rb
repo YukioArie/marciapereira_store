@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     delete 'cart/delete/:cart_id/:item_id', to: 'carts#destroy_item', as: 'cart_destroy_item'
     get 'search', to: 'search#products'
     get 'order_details', to: 'order_details#index'
-    post 'order_details/new/:cart_id', to: 'order_details#new', as: 'order_details_new'
+    post 'order_details/create/:cart_id', to: 'order_details#create', as: 'order_details_create'
     resources :clients
     resources :products
   end
