@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_172308) do
+ActiveRecord::Schema.define(version: 2022_01_14_181013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_172308) do
     t.float "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "client_id"
+    t.bigint "client_id", null: false
     t.index ["client_id"], name: "index_carts_on_client_id"
   end
 
@@ -80,20 +80,21 @@ ActiveRecord::Schema.define(version: 2022_01_12_172308) do
 
   create_table "items", force: :cascade do |t|
     t.integer "quantity"
-    t.bigint "cart_id", null: false
+    t.bigint "cart_id"
     t.bigint "size_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_detail_id"
     t.index ["cart_id"], name: "index_items_on_cart_id"
+    t.index ["order_detail_id"], name: "index_items_on_order_detail_id"
     t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.bigint "cart_id", null: false
+    t.float "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id", null: false
-    t.index ["cart_id"], name: "index_order_details_on_cart_id"
     t.index ["client_id"], name: "index_order_details_on_client_id"
   end
 
@@ -119,8 +120,8 @@ ActiveRecord::Schema.define(version: 2022_01_12_172308) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carts", "clients"
   add_foreign_key "items", "carts"
+  add_foreign_key "items", "order_details"
   add_foreign_key "items", "sizes"
-  add_foreign_key "order_details", "carts"
   add_foreign_key "order_details", "clients"
   add_foreign_key "sizes", "products"
 end
