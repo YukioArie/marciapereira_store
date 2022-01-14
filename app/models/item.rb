@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  belongs_to :cart
+  belongs_to :order_detail, optional: true
+  belongs_to :cart, optional: true
   belongs_to :size
 
   def self.create_in_cart(client_id, size_id)
