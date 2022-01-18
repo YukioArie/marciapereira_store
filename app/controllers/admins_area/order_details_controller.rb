@@ -1,41 +1,57 @@
 class AdminsArea::OrderDetailsController < AdminsAreaController
+  before_action :set_client_cart_params, only: [:create]
+  before_action :create_order_detail, only: [:create]
+  before_action :add_items_client_cart_to_order_details, only: [:create]
+  before_action :set_client_cart_total_price, only: [:create]
+  before_action :set_order_detail_total_price, only: [:create]
+  before_action :update_product_size_quantity, only: [:create]
+
   def index; end
 
   def create
-    cart_client = Cart.find(params[:cart_id])
-    order_detail = OrderDetail.create!(total_price: 0, client_id: cart_client.client.id)
+    Cart.update
 
-    cart_client.items.each do |item|
-      item.order_detail_id = order_detail.id
-      item.cart_id = nil
-      item.size.quantity -= item.quantity
-      order_detail.total_price += item.size.product.price * item.quantity
-      item.size.save!
-      # order_detail.save!
-      item.save!
-    end
-    cart_client.total_price = 0
-    cart_client.save!
-    all_cart = Cart.where('total_price > 0')
-    all_cart.each do |cart|
-      cart.items.each do |item|
-        if item.size.quantity < item.quantity && item.size.quantity > 0
-          quantity_difference = item.quantity - item.size.quantity
-          item.quantity = item.size.quantity
-          cart.total_price -= item.size.product.price * quantity_difference
-          item.save!
-          cart.save!
-        elsif item.size.quantity.zero?
-          cart.total_price -= item.size.product.price * item.quantity
-          item.destroy!
-          cart.save!
-        end
-      end
-    end
-    if order_detail.save!
+    if @order_detail.save!
       redirect_to admins_area_products_path, notice: 'Pagamento efetuado com sucesso!'
     else
-      render :new
+      render :index
     end
+  end
+
+  private
+
+  def set_client_cart_params
+    @client_cart = Cart.find(params[:cart_id])
+  end
+
+  def add_items_client_cart_to_order_details
+    @client_cart.items.each do |item|
+      item.order_detail_id = @order_detail.id
+      item.cart_id = nil
+      item.save!
+    end
+  end
+
+  def update_product_size_quantity
+    @order_detail.items.each do |item|
+      item.size.quantity -= item.quantity
+      item.size.save!
+    end
+  end
+
+  def set_order_detail_total_price
+    @order_detail.items.each do |item|
+      @order_detail.total_price += item.size.product.price * item.quantity
+      @order_detail.save!
+    end
+  end
+
+  def create_order_detail
+    @order_detail = OrderDetail.create!(total_price: 0, client_id: @client_cart.client.id)
+  end
+
+  def set_client_cart_total_price
+    @client_cart.total_price = 0
+    @client_cart.save!
   end
 end
